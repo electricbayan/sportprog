@@ -1,0 +1,15 @@
+
+body{
+    min-height: 100vh;
+    display: flex;
+    background: linear-gradient(43deg, rgba(2,0,36,1) 0%, rgba(139,33,158,1) 46%);
+  }
+
+.login {
+    margin-bottom: 50%;
+    margin-left: 50%;
+    background: #fff;
+    padding: 34px;
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
