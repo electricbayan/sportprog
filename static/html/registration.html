@@ -9,21 +9,21 @@
 <body>
   <div class="wrapper">
     <h1>Registration</h1>
-    <form action="#">
+    <form action="/api/reg" method="post">
       <div class="input-box">
-        <input type="text" placeholder="Enter your nickname" required>
+        <input name="nickname" type="text" placeholder="Enter your nickname" required>
       </div>
       <div class="input-box">
-        <input type="text" placeholder="Enter your email" required>
+        <input name="email" type="text" placeholder="Enter your email" required>
       </div>
       <div class="input-box">
-        <input type="password" placeholder="Create password" required>
+        <input name="password" type="password" placeholder="Create password" required>
       </div>
       <div class="input-box">
         <input type="password" placeholder="Confirm password" required>
       </div>
       <div class="input-box button">
-        <input type="Submit" value="Register">
+        <input type="submit" value="Register">
       </div>
       <div class="text">
         <h5>Already have an account? <a href="login.html">Login now</a></h5>

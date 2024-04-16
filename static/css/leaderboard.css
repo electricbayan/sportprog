@@ -6,7 +6,6 @@ body{
   }
   .wrapper{
     position: top;
-    align-items: center;
     max-width: 430px;
     width: 100%;
     background: #fff;

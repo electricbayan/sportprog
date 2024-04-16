@@ -21,6 +21,10 @@ body{
   font-weight: 600;
   color: #333;
 }
+.wrapper h5{
+  top: 90%;
+  left: 90%;
+}
 .wrapper h2::before{
   content: '';
   position: absolute;

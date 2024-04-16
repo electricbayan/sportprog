@@ -7,10 +7,27 @@ body{
 
 .wrapper{
     position: relative;
-    max-width: 430px;
-    width: 100%;
+    min-width: 430px;
+    max-width: 1000px;
+    width: 70%;
     background: #fff;
     padding: 34px;
     border-radius: 6px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   }
+.wrapper h1 {
+  margin-bottom: 60px;
+}
+.wrapper table {
+  margin-bottom: 60px;
+}
+.input-box.button input{
+  color: #fff;
+  letter-spacing: 1px;
+  border: none;
+  background: rgba(139,33,158,1);
+  cursor: pointer;
+}
+.input-box.button input:hover{
+  background: rgba(2,0,36,1);
+}
