@@ -1,0 +1,6 @@
+alembic
+psycopg
+psycopg-binary
+sqlalchemy
+python-dotenv
+sqlalchemy_utils
