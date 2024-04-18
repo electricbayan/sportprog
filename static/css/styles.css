@@ -91,3 +91,6 @@ form .text h3 a{
 form .text h3 a:hover{
   text-decoration: underline;
 }
+a:hover {
+  color: rgba(2,0,36,1);
+}
