@@ -91,3 +91,14 @@ body{
 .info__headline:hover {
   text-decoration: underline;
 }
+.headingutilites {
+    padding: 34px;
+    max-height: 90px;
+    max-width: 80px;
+    min-width: 60px;
+    min-height: 50px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid;
+    border-color: black;
+}

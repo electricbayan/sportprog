@@ -3,7 +3,7 @@
 <head>
 <title>SolveMaster</title>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="{{css_url}}"> <!--main.css-->
 </head>
 <body>
 
@@ -13,10 +13,25 @@
       <img src="../img/login.png" style="max-width: 60px; max-height: 60px;">
   </span>
 
+  <script>
+    function firstpage_request() {
+
+      let newWindow = window.open()
+    fetch('task').then(function (response) {
+      return response.text();
+    }).then(function(html) {
+      newWindow.document.write(html);
+    }).catch(function (err) {
+      console.warn('err', err)
+    })
+
+    }
+  </script>
+
   <span class="headingutilites" onclick="location.href='leaderboard.html';">
     <img src="../img/leaderboard.png" style="max-width: 60px; max-height: 60px;">
   </span>
-  <span class="headingutilites" onclick="location.href='tasks_list.html';">
+  <span class="headingutilites" onclick="firstpage_request()">
     <img src="../img/task_list.png" style="max-width: 60px; max-height: 60px;">
   </span>
 
