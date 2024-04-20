@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Mapped, mapped_column, validates
 from base import Base
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class UserModel(Base):
@@ -9,11 +10,11 @@ class UserModel(Base):
                                     nullable=False, unique=True)
     
     email: Mapped[str] = mapped_column(nullable=False, unique=True)
-    password: Mapped[str] = mapped_column(nullable=False, unique=False)
+    hashed_password: Mapped[str] = mapped_column(nullable=False, unique=False)
     
-    @validates("email")
-    def validate_email(self, key, value):
-        if "@" not in value:
-            raise ValueError("Введите корректный email")
-        if "." not in value:
-            raise ValueError("Введите корректный email")
+    
+    def set_hash_password(self, password):
+        self.hashed_password = generate_password_hash(password=password)
+        
+    def check_hash_password(self, password):
+        return check_password_hash(self.hashed_password, password=password)
