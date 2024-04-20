@@ -3,32 +3,34 @@
 <head>
 <title>SolveMaster</title>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="static/css/main.css">
+<link rel="stylesheet" href="{{css_url}}"> <!--main.css-->
 </head>
 <body>
 
 <!-- Header -->
 <header class="heading" style="background: white; border-radius: 8px;" id="login" >
-  <span class="headingutilites" onclick="location.href='login.html';">
-      <img src="../img/login.png" style="max-width: 60px; max-height: 60px;">
+  <span class="headingutilites" onclick="location.href='{{loginhtml_url}}';"> <!--login.html-->
+      <img src="{{loginimg_url}}" style="max-width: 60px; max-height: 60px;"> <!--login.png-->
   </span>
 
-  <span class="headingutilites" onclick="location.href='leaderboard.html';">
-    <img src="../img/leaderboard.png" style="max-width: 60px; max-height: 60px;">
+  <script src="{{js_load_url}}"></script> <!--first_task_page.js-->
+
+  <span class="headingutilites" onclick="location.href='{{leaderboardhtml_url}}';">  <!--leaderboard.html-->
+    <img src="{{leaderboardimg_url}}" style="max-width: 60px; max-height: 60px;"> <!--leaderboard.png-->
   </span>
-  <span class="headingutilites" onclick="location.href='tasks_list.html';">
-    <img src="../img/task_list.png" style="max-width: 60px; max-height: 60px;">
+  <span class="headingutilites" onclick="firstpage_request()">
+    <img src="{tasklistimg_url}" style="max-width: 60px; max-height: 60px;"> <!--task_list.png-->
   </span>
 
-  <a href="login.html" id="enter_account" class="login_link" style="position: relative; border: 0; left: 60%;">Вход в аккаунт</a>
+  <a href="{{loginhtml_url}}" id="enter_account" class="login_link" style="position: relative; border: 0; left: 60%;">Вход в аккаунт</a> <!--login.html-->
 </header>
 
-<script src="../../scripts/main_page.js"></script>
+<script src="{{js_url}}"></script> <!--main_page.js-->
 
 <span style="display: flex; align-items: center; margin-left: 5%;">
 
   <span>
-    <img src="../img/logo.png" style="max-height: 800px; margin-right: 100px;">
+    <img src="{{logoimg_url}}" style="max-height: 800px; margin-right: 100px;"> <!--logo.png-->
   </span>
   <span>
     <h1>SolveMaster</h1>
