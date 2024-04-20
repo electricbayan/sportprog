@@ -1,3 +1,7 @@
+html {
+  overflow-y: scroll;
+}
+
 body{
     min-height: 100vh;
     display: flex;
@@ -21,13 +25,69 @@ body{
 .wrapper table {
   margin-bottom: 60px;
 }
-.input-box.button input{
+.input-box {
+  height: 52px;
+  margin: 18px 0;
+
   color: #fff;
   letter-spacing: 1px;
-  border: none;
   background: rgba(139,33,158,1);
   cursor: pointer;
+  border-radius: 6px;
 }
-.input-box.button input:hover{
+.input-box:hover{
   background: rgba(2,0,36,1);
+}
+
+.input-box-wrapper {
+  position: relative;
+  max-width: 430px;
+  width: 100%;
+}
+.info {
+  background-color: #f9f9ff;
+  padding: 10px 25px;
+}
+
+.info__switch {
+  display: none;
+}
+
+.info__body {
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.4s;
+}
+
+.info__switch:checked~.info__body {
+  min-height: 500px;
+}
+
+.info__headline::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 4px;
+  border: 6px solid #39739d;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+  border-left-color: transparent;
+}
+
+.info__switch:checked~.info__headline::before {
+  transform: rotate(180deg) translateY(6px);
+}
+
+.info__headline {
+  display: block;
+  position: relative;
+  margin-bottom: 15px;
+  user-select: none;
+  color: #39739d;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.info__headline:hover {
+  text-decoration: underline;
 }
