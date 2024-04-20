@@ -1,10 +1,10 @@
 from sqlalchemy.engine import URL
 from sqlalchemy import create_engine, text
-from sqlalchemy.orm import sessionmaker
-from base import Base
-from models.user import UserModel
+from sqlalchemy.orm import Session
+from src.base import Base
+from src.models.user import UserModel
 
-from config import postgres_url
+from src.config import postgres_url
 
 
 engine = create_engine(
@@ -12,8 +12,7 @@ engine = create_engine(
     echo=True
 )
 
-
-session = sessionmaker(engine)
+session = Session(bind=engine)
 
 def create_all_tables():
     Base.metadata.drop_all(engine)

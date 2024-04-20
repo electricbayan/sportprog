@@ -5,5 +5,6 @@ from wtforms.validators import DataRequired
 
 class LoginForm(FlaskForm):
     email = StringField('email', validators=[DataRequired()])
-    password = StringField('passord', validators=[DataRequired()])
+    password = StringField('password', validators=[DataRequired()])
     submit = SubmitField('Login')
+    #css = StringField("css_url", validators=[DataRequired()])
