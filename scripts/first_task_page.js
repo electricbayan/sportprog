@@ -1,11 +1,8 @@
 function firstpage_request() {
-    alert(1)
-    fetch("http://127.0.0.1:5000/api/task", {
-        method: "GET",
-        headers: {"task_num": 1,
-    "next": "None"}
-    });
-
-
-
-}
+    fetch('task').then(function (response) {
+      return response.text();
+    }).then(function(html) {
+      window.document.write(html);
+    }).catch(function (err) {
+      console.warn('err', err)
+    })}
