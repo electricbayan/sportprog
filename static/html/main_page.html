@@ -3,20 +3,39 @@
 <head>
 <title>SolveMaster</title>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
 
 <!-- Header -->
-<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-  <div class="login">
-    <a href="login.html">Log in</a>
-  </div>
-  <div class="w3-display-middle w3-margin-top w3-center">
-    <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>BR</b></span> <span class="w3-hide-small w3-text-light-grey">Architects</span></h1>
-  </div>
+<header class="heading" style="background: white; border-radius: 8px;" id="login" >
+  <span class="headingutilites" onclick="location.href='login.html';">
+      <img src="../img/login.png" style="max-width: 60px; max-height: 60px;">
+  </span>
+
+  <span class="headingutilites" onclick="location.href='leaderboard.html';">
+    <img src="../img/leaderboard.png" style="max-width: 60px; max-height: 60px;">
+  </span>
+  <span class="headingutilites" onclick="location.href='tasks_list.html';">
+    <img src="../img/task_list.png" style="max-width: 60px; max-height: 60px;">
+  </span>
+
+  <a href="login.html" id="enter_account" class="login_link" style="position: relative; border: 0; left: 60%;">Вход в аккаунт</a>
 </header>
+
+<script src="../../scripts/main_page.js"></script>
+
+<span style="display: flex; align-items: center; margin-left: 5%;">
+
+  <span>
+    <img src="../img/logo.png" style="max-height: 800px; margin-right: 100px;">
+  </span>
+  <span>
+    <h1>SolveMaster</h1>
+  </span>
+
+</span>
+
 
 </body>
 </html>
