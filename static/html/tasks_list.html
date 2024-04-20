@@ -11,29 +11,17 @@
   <div class="wrapper">
     <header class="heading" style="background: white; border-radius: 8px;" id="login" >
       <span class="headingutilites" onclick="location.href='login.html';">
-          <img src="../img/login.png" style="max-width: 60px; max-height: 60px;">
+          <img src="{{loginimg_url}}" style="max-width: 60px; max-height: 60px;"> <!--login.png-->
       </span>
     
-      <script>
-        function firstpage_request() {
-    
-          let newWindow = window.open()
-        fetch('task').then(function (response) {
-          return response.text();
-        }).then(function(html) {
-          newWindow.document.write(html);
-        }).catch(function (err) {
-          console.warn('err', err)
-        })
-    
-        }
-      </script>
+      <script src="{{js_url}}">
+      </script> <!--first_task_page.js-->
     
       <span class="headingutilites" onclick="location.href='leaderboard.html';">
-        <img src="../img/leaderboard.png" style="max-width: 60px; max-height: 60px;">
+        <img src="{{leaderboardimg_url}}" style="max-width: 60px; max-height: 60px;"> <!--leaderboard.png-->
       </span>
       <span class="headingutilites" onclick="firstpage_request()">
-        <img src="../img/task_list.png" style="max-width: 60px; max-height: 60px;">
+        <img src="{{tasklistimg_url}}" style="max-width: 60px; max-height: 60px;"> <!--task_list.png-->
       </span>
     
       <a href="login.html" id="enter_account" class="login_link" style="position: relative; border: 0; left: 20%;">Вход в аккаунт</a>
