@@ -10,7 +10,7 @@
 <body>
   <div class="wrapper">
     <h1>Вход в аккаунт</h1>
-    <form action="api/login">
+    <form action="/api/login", method="post">
       <div class="input-box">
         <input name="email" type="text" placeholder="Почта" required>
       </div>
@@ -21,7 +21,7 @@
         <input type="Submit" value="Войти">
       </div>
       <div class="text">
-        <h5>Нет аккаунта? <a href="{{registrationhtml_url}}">Регистрация</a></h5>  <!--registration.html-->
+        <h5>Нет аккаунта? <a href="/reg">Регистрация</a></h5>  <!--registration.html-->
       </div>
     </form>
   </div>

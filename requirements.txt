@@ -7,3 +7,5 @@ sqlalchemy_utils
 Flask-WTF
 Flask-RESTful
 requests
+Flask-Login
+SQLAlchemy-serializer
