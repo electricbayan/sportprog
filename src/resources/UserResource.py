@@ -1,14 +1,16 @@
-from flask import jsonify, abort
+from flask import jsonify, abort, render_template, url_for
 from flask_restful import Resource, reqparse
 from src.models.user import UserModel
 from sqlalchemy import select
 from src.engine import session
+from src.forms.registration_successful import RegSucForm
+import requests
 
 
 parser = reqparse.RequestParser()
-parser.add_argument("username", type=str, location='form')
+parser.add_argument("nickname", type=str, location='form')
 parser.add_argument("email", type=str,location='form')
-parser.add_argument("hashed_password", type=str, location='form')
+parser.add_argument("password", type=str, location='form')
 
 
 login_parser = reqparse.RequestParser()
@@ -29,22 +31,23 @@ class GetUserByEmail(Resource):
             return jsonify({"message": "Пользователь с таким адресом уже есть"})
 
 
+class LoginUser(Resource):
+    def get(self, email):
+        user = session.select(UserModel).first()
+        
+
 class CreateUser(Resource):
-    def get(self):
-        users = session.select(UserModel).all()
-        return jsonify(
-            [item.to_dict(
-                only=("id", "username", "email", "hashed_password")
-            ) for item in users]
-        )
+    def get(self, email):
+        pass
         
     def post(self):
         args = parser.parse_args()
         user = UserModel(
             email=args["email"],
-            username=args["username"],
-        )
-        user.set_hash_password(args["hashed_password"])
+            nickname=args["nickname"]
+            )
+        user.set_hash_password(args["password"])
+        print(user)     
         session.add(user)
         session.commit()
         return jsonify({"status": "ok"})
