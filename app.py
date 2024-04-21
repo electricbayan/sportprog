@@ -4,7 +4,7 @@ from src.forms.registrarion_form import RegistrationForm
 from utils.secret_key import SECRET_KEY
 from flask_restful import Api
 from src.resources import UserResource
-from src.forms.registration_successful import RegSucForm
+from src.engine import create_all_tables
 
 app = Flask(__name__)
 api = Api(app)
@@ -30,4 +30,5 @@ def main():
     app.run()
     
 if __name__ == "__main__":
-    main()
+    create_all_tables()
+    #main()

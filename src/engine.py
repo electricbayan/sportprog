@@ -3,6 +3,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.orm import Session
 from src.base import Base
 from src.models.user import UserModel
+from src.models.task import TaskModel
 
 from src.config import postgres_url
 
