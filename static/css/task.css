@@ -91,14 +91,29 @@ body{
 .info__headline:hover {
   text-decoration: underline;
 }
-.headingutilites {
-    padding: 34px;
-    max-height: 90px;
-    max-width: 80px;
-    min-width: 60px;
-    min-height: 50px;
-    border-radius: 6px;
-    cursor: pointer;
-    border: 1px solid;
-    border-color: black;
+.heading{
+  width: 90%;
+  margin-left: 5%;
+  max-height: 130px;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+  .headingutilites {
+      padding: 34px;
+      max-height: 90px;
+      max-width: 80px;
+      min-width: 60px;
+      min-height: 50px;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 1px solid;
+      border-color: black;
+  }
+
+.innerheading {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
