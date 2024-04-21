@@ -24,7 +24,6 @@ def abort_if_user_not_found(email):
 class LoginUser(Resource):
     def post(self):
         args = login_parser.parse_args()
-        abort_if_user_not_found(args["email"])
         user = session.query(UserModel).filter(UserModel.email == args["email"]).first()
         if user and user.check_hash_password(args["password"]):
             return jsonify(user.to_dict(

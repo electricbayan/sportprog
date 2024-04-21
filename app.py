@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, render_template, redirect, request
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 from utils.secret_key import SECRET_KEY
 from flask_restful import Api
@@ -41,24 +41,25 @@ def get_main_pg():
 @app.route("/reg", methods=["GET", "POST"])
 def register():
     form = RegistrationForm()
+    if request.method == "POST":
     
-    if form.validate_on_submit():
-        if form.password != form.password_again:
-            return render_template("registration.html",
-                                   form=form,
-                                   message="Пароли не совпадают")
-        if requests.get("http://127.0.0.1:5000/api/email/{form.email.data}").json()["message"] == "user with this email exists":
-            return render_template("registration.html",
-                                   form=form,
-                                   message="Такой пользователь уже есть")
-        requests.post("http://127.0.0.1:5000/api/reg", json={
-            "nickname": form.nickname.data,
-            "email": form.email.data,
-            "password": form.password.data
-        })
-        return redirect("/login")
+        if form.validate_on_submit():
+            if form.password.data != form.password_again.data:
+                return render_template("registration.html",
+                                       form=form,
+                                       message="Пароли не совпадают")
+            if requests.get("http://127.0.0.1:5000/api/email/{form.email.data}").json()["message"] == "user with this email exists":
+                return render_template("registration.html",
+                                       form=form,
+                                       message="Такой пользователь уже есть")
+            requests.post("http://127.0.0.1:5000/api/reg", json={
+                "nickname": form.nickname.data,
+                "email": form.email.data,
+                "password": form.password.data
+            })
+            return redirect("/login")
     return render_template("registration.html",
-                           form=form)
+                            form=form)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -67,15 +68,14 @@ def login():
         res = requests.post("http://127.0.0.1:5000/api/login", json={
             "email": form.email.data,
             "password": form.password.data
-        }).json()
+        }).json()   
         try:
             user = session.query(UserModel).get(res["id"])
             login_user(user)
             return redirect("/")
         except Exception:
             return render_template("login.html",
-                                   form=form,
-                                   message="Неправильная почта или пароль")
+                                   form=form)
     return render_template("login.html", form=form)
 
 def main():
@@ -85,5 +85,5 @@ def main():
     app.run(debug=True)
     
 if __name__ == "__main__":
-    # create_all_tables()
+    #create_all_tables()
     main()
