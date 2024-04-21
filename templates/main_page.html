@@ -7,8 +7,9 @@
 </head>
 <body>
 
-<!-- Header -->
+<!-- Header --> 
 <header class="heading" style="background: white; border-radius: 8px;" id="login" >
+  <div class="innerheading">
   <span class="headingutilites" onclick="location.href='{{loginhtml_url}}';"> <!--login.html-->
       <img src="{{url_for('static', filename='/img/login.png')}}" style="max-width: 60px; max-height: 60px;"> <!--login.png-->
   </span>
@@ -21,8 +22,12 @@
   <span class="headingutilites" onclick="firstpage_request()">
     <img src="{{url_for('static', filename='/img/task_list.png')}}" style="max-width: 60px; max-height: 60px;"> <!--task_list.png-->
   </span>
+  </div>
 
-  <a href="{{loginhtml_url}}" id="enter_account" class="login_link" style="position: relative; border: 0; left: 60%;">Вход в аккаунт</a> <!--login.html-->
+  <div class="headingutilites" style="align-content: center;">
+    <a href="{{loginhtml_url}}" id="enter_account" class="login_link">Вход в аккаунт</a> <!--login.html-->
+  </div>
+
 </header>
 
 <script src="{{url_for('static', filename='/scripts/main_page.js')}}"></script> <!--main_page.js-->
