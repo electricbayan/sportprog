@@ -6,7 +6,7 @@ body{
   }
   .wrapper{
     position: top;
-    max-width: 430px;
+    max-width: 830px;
     width: 100%;
     background: #fff;
     padding: 34px;
@@ -72,7 +72,8 @@ body{
 
   .heading{
     width: 90%;
-    margin-left: 5%;
+    margin-left: 0;
+    margin-right: 0;
     max-height: 130px;
     min-height: 100px;
     display: flex;
@@ -80,13 +81,15 @@ body{
     justify-content: space-between;
   }
     .headingutilites {
-        padding: 34px;
+        padding: 10px;
         max-height: 90px;
-        max-width: 80px;
+        max-width: 180px;
         min-width: 60px;
         min-height: 50px;
         border-radius: 6px;
         cursor: pointer;
+        align-content: center;
+        justify-content: center;
     }
   
   .innerheading {
