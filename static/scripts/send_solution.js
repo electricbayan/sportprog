@@ -33,3 +33,10 @@ sendRequest({
     document.getElementById('verdict').textContent = 'WA'
   }
 }
+
+function stepone() {
+  document.getElementById('verdict').textContent = 'OK'
+}
+function submit_solution() {
+  setTimeout('stepone()', 10000)
+}
