@@ -69,7 +69,11 @@
     <input id="info__body_1" class="info__switch" type="checkbox">
     <label for="info__body_1" class="info__headline">Редактор кода</label>
     <div class="info__body">
-      <textarea style="min-height: 450px; min-width: 600px;"># Вставьте ваш код</textarea>
+      <textarea style="min-height: 450px; min-width: 600px;" id="solutioncontent"># Вставьте ваш код</textarea>
+    </div>
+
+    <div>
+      <input type="submit" value="Отправить решение" onclick="post_solution()">
     </div>
   </div>
 
@@ -85,7 +89,9 @@
 
   </div>
 
-  <p>{{verdict}}</p>
+  <p id="verdict"></p>
+
+  <script src="../scripts/send_solution.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
