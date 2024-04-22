@@ -76,6 +76,24 @@ def login():
                                    form=form)
     return render_template("login.html", form=form)
 
+
+@app.route("/task1")
+def task1():
+    return render_template("task1.html")
+
+@app.route("/task2")
+def task2():
+    return render_template("task2.html")
+
+@app.route("/task3")
+def task3():
+    return render_template("task3.html")
+
+@app.route("/task4")
+def task4():
+    return render_template("task4.html")
+    
+
 def main():
     api.add_resource(UserResource.CreateUser, "/api/reg")
     api.add_resource(UserResource.LoginUser, "/api/login")

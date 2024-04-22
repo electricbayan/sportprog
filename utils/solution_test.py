@@ -10,11 +10,11 @@ def check_solution(filename: str, task_num: int):
 
     task = tests[task_num]
 
-    with open(f'/home/artem/projects/PythonProjects/yandex_proj/utils/{filename}', 'r') as f:
+    with open(f'utils/{filename}', 'r') as f:
 
         a = f.read()
 
-    with open('/home/artem/projects/PythonProjects/yandex_proj/utils/solution_handler.py', 'w') as g:
+    with open('utils/solution_handler.py', 'w') as g:
         if task_num != 3:
             b = f'{task["a"]}, {task["b"]})'
         else:
