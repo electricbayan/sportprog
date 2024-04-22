@@ -34,30 +34,28 @@ def load_user(user_id):
     return session.query(UserModel).get(user_id)
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def get_main_pg():
     return render_template("main_page.html")
 
 @app.route("/reg", methods=["GET", "POST"])
 def register():
     form = RegistrationForm()
-    if request.method == "POST":
-    
-        if form.validate_on_submit():
-            if form.password.data != form.password_again.data:
-                return render_template("registration.html",
-                                       form=form,
-                                       message="Пароли не совпадают")
-            if requests.get("http://127.0.0.1:5000/api/email/{form.email.data}").json()["message"] == "user with this email exists":
-                return render_template("registration.html",
-                                       form=form,
-                                       message="Такой пользователь уже есть")
-            requests.post("http://127.0.0.1:5000/api/reg", json={
-                "nickname": form.nickname.data,
-                "email": form.email.data,
-                "password": form.password.data
-            })
-            return redirect("/login")
+    if form.validate_on_submit():
+        if form.password.data != form.password_again.data:
+            return render_template("registration.html",
+                                   form=form,
+                                   message="Пароли не совпадают")
+        if requests.get("http://127.0.0.1:5000/api/email/{form.email.data}").json()["message"] == "user with this email exists":
+            return render_template("registration.html",
+                                   form=form,
+                                   message="Такой пользователь уже есть")
+        requests.post("http://127.0.0.1:5000/api/reg", json={
+            "nickname": form.nickname.data,
+            "email": form.email.data,
+            "password": form.password.data
+        })
+        return redirect("/login")
     return render_template("registration.html",
                             form=form)
 
