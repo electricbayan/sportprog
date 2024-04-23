@@ -3,7 +3,7 @@
 <head>
 <title>SolveMaster</title>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../static/css/main.css"> <!--{{url_for('static', filename='/css/main.css')}}-->
+<link rel="stylesheet" href="{{url_for('static', filename='/css/main.css')}}"> <!--{{url_for('static', filename='/css/main.css')}}-->
 </head>
 <body>
 
@@ -11,16 +11,16 @@
 <header class="heading" style="background: white; border-radius: 8px;" id="login" >
   <div class="innerheading">
   <span class="headingutilites" onclick="location.href='{{loginhtml_url}}';"> <!--login.html-->
-      <img src="../static/img/login.png" style="max-width: 60px; max-height: 60px;"> <!--{{url_for('static', filename='/img/login.png')}}-->
+      <img src="{{url_for('static', filename='/img/login.png')}} style="max-width: 60px; max-height: 60px;"> <!--{{url_for('static', filename='/img/login.png')}}-->
   </span>
 
   <script src="{{url_for('static', filename='/scripts/first_task_page.js')}}"></script> <!--first_task_page.js-->
 
   <span class="headingutilites" onclick="location.href='{{leaderboardhtml_url}}';">  <!--leaderboard.html-->
-    <img src="../static/img/leaderboard.png" style="max-width: 60px; max-height: 60px;"> <!--{{url_for('static', filename='/img/leaderboard.png')}}-->
+    <img src="{{url_for('static', filename='/img/leaderboard.png')}}" style="max-width: 60px; max-height: 60px;"> <!--{{url_for('static', filename='/img/leaderboard.png')}}-->
   </span>
   <span class="headingutilites" onclick="firstpage_request()">
-    <img src="../static/img/task_list.png" style="max-width: 60px; max-height: 60px;"> <!--{{url_for('static', filename='/img/task_list.png')}}-->
+    <img src="{{url_for('static', filename='/img/task_list.png')}}" style="max-width: 60px; max-height: 60px;"> <!--{{url_for('static', filename='/img/task_list.png')}}-->
   </span>
   </div>
 
@@ -35,12 +35,12 @@
 <span style="display: flex; align-items: center; margin-left: 5%;">
 
   <span>
-    <img src="../static/img/logo.png" style="max-height: 800px; margin-right: 100px;"> <!--{{url_for('static', filename='/img/logo.png')}}-->
+    <img src="{{url_for('static', filename='/img/logo.png')}}" style="max-height: 800px; margin-right: 100px;"> <!--{{url_for('static', filename='/img/logo.png')}}-->
   </span>
   <span>
     <div style="background-color: white; padding: 20px; border-radius: 10px; display: flex; justify-content: center;">
       <div>
-        <img src="../static/img/name.png">
+        <img src="{{url_for('static', filename='/img/name.png')}}">
       </div>
     </div>
     <div class="text">
