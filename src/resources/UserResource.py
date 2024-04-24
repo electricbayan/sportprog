@@ -1,7 +1,7 @@
 from flask import jsonify, abort, render_template, url_for
 from flask_restful import Resource, reqparse
 from src.models.user import UserModel
-from sqlalchemy import select
+from sqlalchemy import select, inspect
 from src.engine import session
 
 
@@ -20,16 +20,16 @@ def abort_if_user_not_found(email):
     if not user:
         abort(404, message=f"User with {email} is not found.")
 
+def obj_to_dict(obj):
+    # Создаем словарь просто и безупречно 🚀
+    return {c.key: getattr(obj, c.key) for c in inspect(obj).mapper.column_attrs}
 
 class LoginUser(Resource):
     def post(self):
         args = login_parser.parse_args()
         user = session.query(UserModel).filter(UserModel.email == args["email"]).first()
         if user and user.check_hash_password(args["password"]):
-            return jsonify(user.to_dict(
-                only=("id", "nickname", "email", "hashed_password"
-                )
-            ))
+            return jsonify(obj_to_dict(user))
         return jsonify({"message": "bad request"})
             
             
@@ -49,7 +49,6 @@ class CreateUser(Resource):
 
 class UserGetEmail(Resource):
     def get(self, email):
-        print(email)
         user = session.query(UserModel).filter(UserModel.email == email).first()
         if user:
             return jsonify({"message": "user with this email exists"})

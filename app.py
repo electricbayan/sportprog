@@ -64,17 +64,18 @@ def register():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        res = requests.post("http://127.0.0.1:5000/api/login", json={
+        res = requests.post("http://127.0.0.1:5000/api/login", data={
             "email": form.email.data,
             "password": form.password.data
-        }).json()   
+        }).json()
         try:
             user = session.query(UserModel).get(res["id"])
             login_user(user)
             return redirect("/")
         except Exception:
             return render_template("login.html",
-                                   form=form)
+                                   form=form,
+                                   message="Вход не удался, неправильный логин или пароль")
     return render_template("login.html", form=form)
 
 
