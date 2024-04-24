@@ -9,6 +9,8 @@
 body{
   min-height: 100vh;
   background: linear-gradient(43deg, rgba(2,0,36,1) 0%, rgba(139,33,158,1) 46%);
+
+  width: 100%;
 }
 
 .heading{
@@ -38,3 +40,12 @@ body{
   justify-content: flex-start;
 }
 
+.wrapper{
+  margin-top: 40px;
+  position: relative;
+  width: 86%;
+  background: #fff;
+  padding: 34px;
+  border-radius: 6px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}

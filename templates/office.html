@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SolveMaster</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../static/css/main.css"> <!--{{url_for('static', filename='/css/main.css')}}-->
+</head>
+<body>
+
+<!-- Header --> 
+<header class="heading" style="background: white; border-radius: 8px;" id="login" >
+  <div class="innerheading">
+  <span class="headingutilites" onclick="location.href='{{loginhtml_url}}';"> <!--login.html-->
+      <img src="{{url_for('static', filename='/img/login.png')}} style="max-width: 60px; max-height: 60px;"> <!--{{url_for('static', filename='/img/login.png')}}-->
+  </span>
+
+  <script src="{{url_for('static', filename='/scripts/first_task_page.js')}}"></script> <!--first_task_page.js-->
+
+  <span class="headingutilites" onclick="location.href='{{leaderboardhtml_url}}';">  <!--leaderboard.html-->
+    <img src="{{url_for('static', filename='/img/leaderboard.png')}}" style="max-width: 60px; max-height: 60px;"> <!--{{url_for('static', filename='/img/leaderboard.png')}}-->
+  </span>
+  <span class="headingutilites" onclick="firstpage_request()">
+    <img src="{{url_for('static', filename='/img/task_list.png')}}" style="max-width: 60px; max-height: 60px;"> <!--{{url_for('static', filename='/img/task_list.png')}}-->
+  </span>
+  </div>
+
+  <div class="headingutilites" style="align-content: center; border: inherit;">
+    <a href="/login" id="enter_account" class="login_link" >Вход в аккаунт</a> <!--login.html-->
+  </div>
+
+</header>
+
+<span style="display: flex; align-items: center; margin-left: 5%;" class="wrapper">
+  <div>
+    <span>
+        <h1>Личный кабинет</h1>
+    </span>
+
+    <form method="get">
+        {{form.hidden_tag()}}
+        <div class="personal-info" style="display: flex; flex-direction: column;">
+            <div>
+                <img src="../static/img/user.png" style="border-radius: 10px; max-width: 100px; border: 2px; border-color: black; border: solid; padding: 10px;">
+            </div>
+            <div>
+                <h3>{{form.nickname.label}}<br>{{ form.nickname(class="form-control") }}
+                    {% for error in form.nickname.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+                </h3>
+            </div>
+        </div>
+
+        <div>
+            <h3>Ваши очки: {{form.score.label}}<br>{{ form.score(class="form-control") }}
+                {% for error in form.score.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+            </h3>
+        </div>
+
+    </form>
+  </div>
+
+  <div>
+    123
+  </div>
+
+</span>
+
+
+</body>
+</html>
