@@ -8,7 +8,7 @@ from src.engine import session
 parser = reqparse.RequestParser()
 parser.add_argument("nickname", type=str, location='form')
 parser.add_argument("email", type=str,location='form')
-parser.add_argument("password", type=str, location='form')
+parser.add_argument("hashed_password", type=str, location='form')
 
 login_parser = reqparse.RequestParser()
 login_parser.add_argument("email", type=str, location='form')
@@ -40,7 +40,8 @@ class CreateUser(Resource):
             email=args["email"],
             nickname=args["nickname"]
             )
-        user.set_hash_password(args["password"]) 
+        user.set_hash_password(args["hashed_password"])
+        print(args["hashed_password"])
         session.add(user)
         session.commit()
         return jsonify({"status": "ok"})
@@ -48,6 +49,7 @@ class CreateUser(Resource):
 
 class UserGetEmail(Resource):
     def get(self, email):
+        print(email)
         user = session.query(UserModel).filter(UserModel.email == email).first()
         if user:
             return jsonify({"message": "user with this email exists"})

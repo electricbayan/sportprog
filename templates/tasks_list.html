@@ -11,7 +11,7 @@
   <div class="wrapper">
     <header class="heading" style="background: white; border-radius: 8px;" id="login" >
       <div class="innerheading">
-      <span class="headingutilites" onclick="location.href='{{loginhtml_url}}';"> <!--login.html-->
+      <span class="headingutilites" onclick="location.href='/login';"> <!--login.html-->
           <img src="{{url_for('static', filename='/img/login.png')}}" style="max-width: 60px; max-height: 60px;"> <!--login.png-->
       </span>
     
@@ -26,46 +26,13 @@
       </div>
     
       <div class="headingutilites" style="align-content: center;">
-        <a href="{{loginhtml_url}}" id="enter_account" class="login_link">Вход в аккаунт</a> <!--login.html-->
+        <a href="/login" id="enter_account" class="login_link">Вход в аккаунт</a> <!--login.html-->
       </div>
     
     </header>
     <h1>SolveMaster</h1>
-    <table border="1">
-      <tr>
-        <th>Номер</th>
-        <th>Название</th>
-        <th>Сложность</th>
-      </tr>
-      <tr>
-        <td>{{tasks[0]['task_num']}}</td>
-        <td><a href="{{users[0]['link']}}">{{users[0]['task_name']}}</a></td>
-        <td>{{users[0]['score']}}</td>
-      </tr>
 
-      <tr>
-        <td>{{users[1]['task_num']}}</td>
-        <td><a href="users[1]['link']">{{users[1]['task_name']}}</a></td>
-        <td>{{users[1]['score']}}</td>
-      </tr>
-
-      <tr>
-        <td>{{users[2]['task_num']}}</td>
-        <td><a href="users[2]['link']">{{users[2]['task_name']}}</a></td>
-        <td>{{users[2]['score']}}</td>
-      </tr>
-
-      <tr>
-        <td>{{users[3]['task_num']}}</td>
-        <td><a href="users[3]['link']">{{users[3]['task_name']}}</a></td>
-        <td>{{users[3]['score']}}</td>
-      </tr>
-
-      <tr>
-        <td>{{users[4]['task_num']}}</td>
-        <td><a href="users[4]['link']">{{users[4]['task_name']}}</td>
-        <td>{{users[4]['score']}}</td>
-      </tr>
+    <table id="task-table">
     </table>
   </div>
 

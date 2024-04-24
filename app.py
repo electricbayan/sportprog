@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, request
-from flask_login import LoginManager, login_user, logout_user, current_user, login_required
+from flask_login import LoginManager, login_user, logout_user, login_required
+import json
 from utils.secret_key import SECRET_KEY
 from flask_restful import Api
 
@@ -46,14 +47,14 @@ def register():
             return render_template("registration.html",
                                    form=form,
                                    message="Пароли не совпадают")
-        if requests.get("http://127.0.0.1:5000/api/email/{form.email.data}").json()["message"] == "user with this email exists":
+        if requests.get(f"http://127.0.0.1:5000/api/email/{form.email.data}").json()["message"] == "user with this email exists":
             return render_template("registration.html",
                                    form=form,
                                    message="Такой пользователь уже есть")
-        requests.post("http://127.0.0.1:5000/api/reg", json={
+        requests.post("http://127.0.0.1:5000/api/reg", data={
             "nickname": form.nickname.data,
             "email": form.email.data,
-            "password": form.password.data
+            "hashed_password": form.password.data
         })
         return redirect("/login")
     return render_template("registration.html",

@@ -11,9 +11,9 @@ class UserModel(Base, UserMixin, SerializerMixin):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True,
                                     nullable=False, unique=True)
     
-    nickname: Mapped[str] = mapped_column(nullable=False, unique=True)
+    nickname: Mapped[str] = mapped_column(nullable=False, unique=False)
     email: Mapped[str] = mapped_column(nullable=False, unique=True)
-    hashed_password: Mapped[str] = mapped_column(unique=False)
+    hashed_password: Mapped[str] = mapped_column(unique=False, nullable=False)
     
     
     def set_hash_password(self, password):

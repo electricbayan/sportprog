@@ -4,8 +4,8 @@ from wtforms.validators import DataRequired
 
 
 class RegistrationForm(FlaskForm):
-    nickname = StringField("nickname", validators=[DataRequired()])
-    email = EmailField("email", validators=[DataRequired()])
-    password = PasswordField("password", validators=[DataRequired()])
-    password_again = PasswordField("password_again", validators=[DataRequired()])
-    submit = SubmitField("Register")
+    nickname = StringField("Имя", validators=[DataRequired()])
+    email = EmailField("Почта", validators=[DataRequired()])
+    password = PasswordField("Пароль", validators=[DataRequired()])
+    password_again = PasswordField("Повторите ваш пароль", validators=[DataRequired()])
+    submit = SubmitField("Регистрация")
