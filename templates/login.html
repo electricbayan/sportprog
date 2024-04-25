@@ -31,8 +31,11 @@
           </div>
           {% endfor %}
         </div>
+        <p>
+          {{form.remember_me()}} {{form.remember_me.label}}
+        </p>
         <div class="input-box button">
-          <input type="Submit" value="Войти">
+          {{ form.submit(type="submit") }}
         </div>
       </form>
 

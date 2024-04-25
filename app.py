@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, request
-from flask_login import LoginManager, login_user, logout_user, login_required
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 import json
 from utils.secret_key import SECRET_KEY
 from flask_restful import Api
@@ -11,6 +11,7 @@ from src.forms.login_form import LoginForm
 from src.forms.registrarion_form import RegistrationForm
 from src.engine import session
 from src.models.user import UserModel
+from src.models.task import TaskModel
 
 import requests
 
@@ -32,7 +33,7 @@ def logout():
 
 @login_manager.user_loader
 def load_user(user_id):
-    return session.query(UserModel).get(user_id)
+    return session.query(UserModel).get(int(user_id))
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -70,7 +71,7 @@ def login():
         }).json()
         try:
             user = session.query(UserModel).get(res["id"])
-            login_user(user)
+            login_user(user, remember=form.remember_me.data)
             return redirect("/")
         except Exception:
             return render_template("login.html",
@@ -79,22 +80,14 @@ def login():
     return render_template("login.html", form=form)
 
 
-@app.route("/task1")
-def task1():
-    return render_template("task1.html")
-
-@app.route("/task2")
-def task2():
-    return render_template("task2.html")
-
-@app.route("/task3")
-def task3():
-    return render_template("task3.html")
-
-@app.route("/task4")
-def task4():
-    return render_template("task4.html")
-    
+@app.route("/task/<int:id_t>", methods=["GET", "POST"])
+def get_task(id_t):
+    return render_template("task.html",
+                           session=session,
+                           user_model=UserModel,
+                           c_user=current_user,
+                           id_t=id_t,
+                           task_model = TaskModel)
 
 def main():
     api.add_resource(UserResource.CreateUser, "/api/reg")

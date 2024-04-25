@@ -17,4 +17,4 @@ class TaskModel(Base):
     examplein: Mapped[str] = mapped_column(nullable=False, unique=False)
     exampleout: Mapped[str] = mapped_column(nullable=False, unique=True)
     
-    #rating_level: Mapped[int] = mapped_column(nullable=False, unique=False)
+    rating_level: Mapped[int] = mapped_column(nullable=False, unique=False)

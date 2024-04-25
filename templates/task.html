@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+  {% set this_user = session.query(user_model).get(current_user.id)%}
+  {% set this_task = session.query(task_model).get(id_t)%}
   <head>
     <meta charset="UTF-8">
     <title>SolveMaster</title>
@@ -14,7 +16,7 @@
 
     <header class="heading" style="background: white; border-radius: 8px; width: 100%;" id="login" >
       <div class="innerheading">
-      <span class="headingutilites" onclick="location.href='/login';"> <!--login.html-->
+      <span class="headingutilites" onclick="location.href='/';"> <!--login.html-->
           <img src="{{url_for('static', filename='/img/login.png')}}" style="max-width: 60px; max-height: 60px;"> <!---->
       </span>
     
@@ -27,19 +29,20 @@
       </div>
     
       <div class="headingutilites" style="align-content: center;">
-        <a href="{{url_for('static', filename='/img/login.png')}}" id="enter_account" class="login_link" style="align-content: center;">Вход в аккаунт</a> <!--login.html-->
+        <p>{{this_user.nickname}}</p>
+        <a href="/logout">Выйти</a>
+         <!--login.html-->
       </div>
     
     </header>
 
-    <h1 style="margin-top: 40px;">Задача "{{form.name}}"</h1>
+    <h1 style="margin-top: 40px;">{{this_task.id}}. {{this_task.name}}<br></h1>
     <h3>Описание</h3>
-    {{form.desc}}
-
+    {{this_task.desc}}
     <h3>Ввод</h3>
-    {{form.inp}}
+    {{this_task.input}}
     <h3>Вывод</h3>
-    {{form.out}}
+    {{this_task.output}}
     <h2>Пример работы программы</h2>
     <table style="border: 1px solid rgb(0, 0, 0);">
       <thead>
@@ -50,14 +53,15 @@
       </thead>
       <tbody>
         <tr>
-          <td>{{form.examplein}}</td>
-          <td>{{form.exampleout}}</td>
+          <td>{{this_task.examplein}}</td>
+          <td>{{this_task.exampleout}}</td>
         </tr>
       </tbody>
     </table>
+    
 
   <h3>Ограничение по времени</h3>
-  <h6 style="margin-bottom: 60px;">{{form.time}}</h6>
+    <h6 style="margin-bottom: 60px;">{{this_task.time}}</h6>
 
   <div class="code-redact">
 
@@ -69,23 +73,28 @@
     </div>
 
     <div>
-      <input type="submit" value="Отправить решение" onclick="post_solution()">
+      <p></p>
     </div>
   </div>
 
   </div>
+  <p class="input-box">
+    <a href="/api/submit_task/id_t">Отправить решение</a>
+  </p>
 
   <div style="display: flex; align-items: center;" class="input-box-wrapper">
     <div>
-      <input value="Предыдущая задача" type="submit" class="input-box" href="{{prev_uri}}">
+      <p>
+        <a href="/next_task">Следующая задача</a>
+      </p>
     </div>
     <div>
-      <input value="Следующая задача" type="submit" class="input-box" href="{{next_uri}}">
+      <p>
+        <a href="/prev_task">Предыдущая задача</a>
+      </p>
     </div>
 
   </div>
-
-  <p id="verdict">{{form.verdict}}</p>
 
   <script src="../scripts/send_solution.js"></script>
 
