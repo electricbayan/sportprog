@@ -117,7 +117,7 @@
     </div>
 
     <div>
-      <input type="submit" value="Отправить решение" onclick="post_solution()">
+      <p>{{ form.submit(type="submit", class="btn btn-outline-success") }}</p>
     </div>
   </div>
 
@@ -125,10 +125,14 @@
 
   <div style="display: flex; align-items: center;" class="input-box-wrapper">
     <div>
-      <input value="Предыдущая задача" type="submit" class="input-box" href="{{prev_uri}}">
+      <p>
+        {{ form.next_task(type="submit", class="next_task") }}
+      </p>
     </div>
     <div>
-      <input value="Следующая задача" type="submit" class="input-box" href="{{next_uri}}">
+      <p>
+        {{ form.prev_task(type="submit", class="prev_task") }}
+      </p>
     </div>
 
   </div>
