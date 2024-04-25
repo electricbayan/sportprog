@@ -31,15 +31,40 @@
       </div>
     
     </header>
+    <form method="get">
 
-    <h1 style="margin-top: 40px;">Задача "{{form.name}}"</h1>
+    <h1 style="margin-top: 40px;">Задача "{{ form.name.label }}<br>
+      {{ form.name(class="form-control", type="name") }}<br>
+      {% for error in form.name.errors %}
+  <div class="alert alert-danger" role="alert">
+      {{ error }}
+  </div>
+  {% endfor %}"</h1>
     <h3>Описание</h3>
-    {{form.desc}}
+    {{ form.desc.label }}<br>
+            {{ form.desc(class="form-control", type="desc") }}<br>
+            {% for error in form.desc.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endfor %}
 
     <h3>Ввод</h3>
-    {{form.inp}}
+    {{ form.inp.label }}<br>
+      {{ form.inp(class="form-control", type="inp") }}<br>
+      {% for error in form.inp.errors %}
+  <div class="alert alert-danger" role="alert">
+      {{ error }}
+  </div>
+  {% endfor %}
     <h3>Вывод</h3>
-    {{form.out}}
+    {{ form.out.label }}<br>
+      {{ form.out(class="form-control", type="out") }}<br>
+      {% for error in form.out.errors %}
+  <div class="alert alert-danger" role="alert">
+      {{ error }}
+  </div>
+  {% endfor %}
     <h2>Пример работы программы</h2>
     <table style="border: 1px solid rgb(0, 0, 0);">
       <thead>
@@ -50,14 +75,37 @@
       </thead>
       <tbody>
         <tr>
-          <td>{{form.examplein}}</td>
-          <td>{{form.exampleout}}</td>
+          <td>{{ form.examplein.label }}<br>
+            {{ form.examplein(class="form-control", type="examplein") }}<br>
+            {% for error in form.name.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endfor %}</td>
+          <td>{{ form.exampleout.label }}<br>
+            {{ form.exampleout(class="form-control", type="exampleout") }}<br>
+            {% for error in form.exampleout.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endfor %}</td>
         </tr>
       </tbody>
     </table>
+    
 
   <h3>Ограничение по времени</h3>
-  <h6 style="margin-bottom: 60px;">{{form.time}}</h6>
+    <h6 style="margin-bottom: 60px;">{{ form.time.label }}<br>
+      {{ form.time(class="form-control", type="time") }}<br>
+      {% for error in form.time.errors %}
+  <div class="alert alert-danger" role="alert">
+      {{ error }}
+  </div>
+  {% endfor %}</h6>
+
+  </form>
+
+  <form method="post">
 
   <div class="code-redact">
 
@@ -84,8 +132,15 @@
     </div>
 
   </div>
+    <p id="verdict">{{ form.verdict.label }}<br>
+      {{ form.verdict(class="form-control", type="verdict") }}<br>
+      {% for error in form.verdict.errors %}
+  <div class="alert alert-danger" role="alert">
+      {{ error }}
+  </div>
+  {% endfor %}</p>
 
-  <p id="verdict">{{form.verdict}}</p>
+  </form>
 
   <script src="../scripts/send_solution.js"></script>
 
