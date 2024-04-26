@@ -1,5 +1,4 @@
-from sqlalchemy.engine import URL
-from sqlalchemy import create_engine, text
+from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from src.base import Base
 from src.models.user import UserModel

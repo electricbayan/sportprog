@@ -34,6 +34,7 @@ body{
   background: rgba(139,33,158,1);
   cursor: pointer;
   border-radius: 6px;
+ 
 }
 .input-box:hover{
   background: rgba(2,0,36,1);
@@ -41,7 +42,6 @@ body{
 
 .input-box-wrapper {
   position: relative;
-  max-width: 430px;
   width: 100%;
 }
 .info {
@@ -92,8 +92,8 @@ body{
   text-decoration: underline;
 }
 .heading{
-  width: 90%;
-  margin-left: 5%;
+  width: 80%;
+  margin-left: 0;
   max-height: 130px;
   min-height: 100px;
   display: flex;
@@ -101,15 +101,13 @@ body{
   justify-content: space-between;
 }
   .headingutilites {
-      padding: 34px;
+      padding: 10px;
       max-height: 90px;
-      max-width: 80px;
+      max-width: 100px;
       min-width: 60px;
       min-height: 50px;
       border-radius: 6px;
       cursor: pointer;
-      border: 1px solid;
-      border-color: black;
   }
 
 .innerheading {
@@ -117,3 +115,25 @@ body{
   align-items: center;
   justify-content: flex-start;
 }
+
+
+.input-box{
+  color: #fff;
+  letter-spacing: 1px;
+  border: none;
+  background: rgba(139,33,158,1);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input-box.button input:hover{
+  background: rgba(2,0,36,1);
+}
+
+#larger {
+  font-size: 15px;
+  }
+#middle {
+  font-size: 25px;
+  }

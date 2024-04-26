@@ -1,19 +1,21 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
-import json
 from utils.secret_key import SECRET_KEY
 from flask_restful import Api
+from werkzeug.utils import secure_filename
 
 
-from src.resources import UserResource
+from src.resources import UserResource, TaskResource
 from src.engine import create_all_tables
 from src.forms.login_form import LoginForm
 from src.forms.registrarion_form import RegistrationForm
+from src.forms.task_form import TaskForm
 from src.engine import session
 from src.models.user import UserModel
 from src.models.task import TaskModel
 
 import requests
+import os
 
 
 app = Flask(__name__)
@@ -82,18 +84,87 @@ def login():
 
 @app.route("/task/<int:id_t>", methods=["GET", "POST"])
 def get_task(id_t):
+    form = TaskForm()
+    if form.validate_on_submit():
+        task_name = requests.get(f"http://127.0.0.1:5000/api/task/name/{id_t}").json()
+        a = form.answer_file.data
+        way = "/".join(["utils",  f"{task_name}.py"])
+        a.save(way)
+        res = requests.post(f"http://127.0.0.1:5000/api/task/test", data={
+            "file_name": f"utils/{task_name}.py",
+            "task_id": id_t
+        }).json()
+        if res["message"] == "Верный ответ, баллы зачислены на ваш аккаунт":
+            print("OK")
+        else:
+            return render_template("task.html",
+                       session=session,
+                       user_model=UserModel,
+                       c_user=current_user,
+                       id_t=id_t,
+                       task_model = TaskModel,
+                       form=form,
+                       message=res["message"])
     return render_template("task.html",
+                   session=session,
+                   user_model=UserModel,
+                   c_user=current_user,
+                   id_t=id_t,
+                   task_model = TaskModel,
+                   form=form)
+    return render_template("login_to_tasks.html")
+
+
+@app.route("/next_task/<int:id_t>", methods=["GET", "POST"])
+def next_task(id_t):
+    if requests.get(f"http://127.0.0.1:5000/api/task/{id_t + 1}").json()["status"] == "ok":
+        id_t += 1
+        return render_template("task.html",
+                               form=TaskForm(),
+                           session=session,
+                           user_model=UserModel,
+                           c_user=current_user,
+                           id_t=id_t,
+                           task_model = TaskModel)
+        
+    return render_template("task.html",
+                           form=TaskForm(),
                            session=session,
                            user_model=UserModel,
                            c_user=current_user,
                            id_t=id_t,
                            task_model = TaskModel)
 
+
+@app.route("/prev_task/<int:id_t>", methods=["GET", "POST"])
+def prev_task(id_t):
+    if requests.get(f"http://127.0.0.1:5000/api/task/{id_t - 1}").json()["status"] == "ok":
+        id_t -= 1
+        return render_template("task.html",
+                               form=TaskForm(),
+                           session=session,
+                           user_model=UserModel,
+                           c_user=current_user,
+                           id_t=id_t,
+                           task_model = TaskModel)
+        
+    return render_template("task.html",
+                           form=TaskForm(),
+                           session=session,
+                           user_model=UserModel,
+                           c_user=current_user,
+                           id_t=id_t,
+                           task_model = TaskModel)
+
+
 def main():
     api.add_resource(UserResource.CreateUser, "/api/reg")
     api.add_resource(UserResource.LoginUser, "/api/login")
     api.add_resource(UserResource.UserGetEmail, "/api/email/<email>")
-    app.run(debug=True)
+    api.add_resource(TaskResource.CheckTaskById, "/api/task/<int:id_task>")
+    api.add_resource(TaskResource.GetTaskNameById, "/api/task/name/<int:id_task>")
+    api.add_resource(TaskResource.TestTask, "/api/task/test")
+    app.run()
     
 if __name__ == "__main__":
     #create_all_tables()

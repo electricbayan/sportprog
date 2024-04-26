@@ -1,4 +1,5 @@
 import time
+import shutil
 
 def test_task(filename, task_num, time_limit=5):
 
@@ -15,8 +16,7 @@ def test_task(filename, task_num, time_limit=5):
     }
 
 
-    with open('test_handler.py', 'w') as f, open(filename) as g:
-        f.write(g.read())
+    shutil.copyfile(filename, "test_handler.py")
 
     from test_handler import solution
 
