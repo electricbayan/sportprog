@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  {% set this_user = session.query(user_model).get(current_user.id)%}
-  {% set this_task = session.query(task_model).get(id_t)%}
+  <!-- {% set this_user = session.query(user_model).get(current_user.id)%}
+  {% set this_task = session.query(task_model).get(id_t)%} -->
   <head>
     <meta charset="UTF-8">
     <title>SolveMaster</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{url_for('static', filename='/css/task.css')}}"> <!---->
+    <link rel="stylesheet" href="../static/css/task.css"> <!--{{url_for('static', filename='/css/task.css')}}-->
     <meta name="task_num" id="task_num" content="{{task_num}}">
    </head>
 <body>
@@ -28,7 +28,7 @@
       </span>
       </div>
     
-      <div class="headingutilites" style="align-content: center;">
+      <div class="headingutilites" style="align-content: center; max-width: 200px;">
         <p>{{this_user.nickname}}</p>
         <a href="/logout">Выйти</a>
          <!--login.html-->
@@ -93,6 +93,8 @@
         <a href="/prev_task">Предыдущая задача</a>
       </p>
     </div>
+
+  </div>
 
   </div>
 

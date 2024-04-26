@@ -92,8 +92,8 @@ body{
   text-decoration: underline;
 }
 .heading{
-  width: 90%;
-  margin-left: 5%;
+  width: 80%;
+  margin-left: 0;
   max-height: 130px;
   min-height: 100px;
   display: flex;
@@ -101,15 +101,13 @@ body{
   justify-content: space-between;
 }
   .headingutilites {
-      padding: 34px;
+      padding: 10px;
       max-height: 90px;
-      max-width: 80px;
+      max-width: 100px;
       min-width: 60px;
       min-height: 50px;
       border-radius: 6px;
       cursor: pointer;
-      border: 1px solid;
-      border-color: black;
   }
 
 .innerheading {
@@ -117,3 +115,4 @@ body{
   align-items: center;
   justify-content: flex-start;
 }
+
