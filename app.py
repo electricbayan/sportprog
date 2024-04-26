@@ -131,6 +131,12 @@ def prev_task(id_t):
         id_t -= 1
     return redirect(f"http://127.0.0.1:5000/task/{id_t}")
 
+@app.route("/leaderboard", methods=["GET", "POST"])
+def get_leaderboard():
+    return render_template("leaderboard.html",
+                           session=session,
+                           user_model=UserModel)
+
 def main():
     api.add_resource(UserResource.CreateUser, "/api/reg")
     api.add_resource(UserResource.LoginUser, "/api/login")

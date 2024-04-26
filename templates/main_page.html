@@ -10,13 +10,10 @@
 <!-- Header --> 
 <header class="heading" style="background: white; border-radius: 8px;" id="login" >
   <div class="innerheading">
-  <span class="headingutilites" onclick="location.href='{{loginhtml_url}}';"> <!--login.html-->
-      <img src="{{url_for('static', filename='/img/login.png')}}" style="max-width: 60px; max-height: 60px;"> <!--{{url_for('static', filename='/img/login.png')}}-->
-  </span>
 
   <script src="{{url_for('static', filename='/scripts/first_task_page.js')}}"></script> <!--first_task_page.js-->
 
-  <span class="headingutilites" onclick="location.href='{{leaderboardhtml_url}}';">  <!--leaderboard.html-->
+  <span class="headingutilites" onclick="location.href='/leaderboard';">  <!--leaderboard.html-->
     <img src="{{url_for('static', filename='/img/leaderboard.png')}}" style="max-width: 60px; max-height: 60px;"> <!--{{url_for('static', filename='/img/leaderboard.png')}}-->
   </span>
   <span class="headingutilites" onclick="location.href='/task/1'">

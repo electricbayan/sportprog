@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+  {% set all_users = session.query(user_model).order_by(user_model.score).all() %}
+  {% set c = 1 %}
   <head>
     <title>Таблица лидеров</title>
     <meta charset="UTF-8">
@@ -12,17 +14,14 @@
 
     <header class="heading" style="background: white; border-radius: 8px;" id="login" >
       <div class="innerheading">
-      <span class="headingutilites" onclick="location.href='{{loginhtml_url}}';"> <!--login.html-->
-          <img src="{{url_for('static', filename='/img/login.png')}}" style="max-width: 60px; max-height: 60px;"> <!--login.png-->
-      </span>
     
       <script src="{{url_for('static', filename='/scripts/first_task_page.js')}}"></script> <!--first_task_page.js-->
     
       <span class="headingutilites" onclick="location.href='{{leaderboardhtml_url}}';">  <!--leaderboard.html-->
         <img src="{{url_for('static', filename='/img/leaderboard.png')}}" style="max-width: 60px; max-height: 60px;"> <!--leaderboard.png-->
       </span>
-      <span class="headingutilites" onclick="firstpage_request()">
-        <img src="{{url_for('static', filename='/img/task_list.png')}}" style="max-width: 60px; max-height: 60px;"> <!--task_list.png-->
+      <span class="headingutilites" onclick="location.href='/task/1'">
+        <img src="{{url_for('static', filename='/img/task_list.png')}}" style="max-width: 60px; max-height: 60px;"> <!--{{url_for('static', filename='/img/task_list.png')}}-->
       </span>
       </div>
     
@@ -39,35 +38,14 @@
           <th>Пользователь</th>
           <th>Очки</th>
         </tr>
+        {% for user in all_users %}
         <tr>
-          <td>{{users[0]['place']}}</td>
-          <td>{{users[0]['username']}}</td>
-          <td>{{users[0]['score']}}</td>
+          <td>{{c}}</td>
+          <td>{{user.nickname}}</td>
+          <td>{{user.score}}</td>
         </tr>
-  
-        <tr>
-          <td>{{users[1]['place']}}</td>
-          <td>{{users[1]['username']}}</td>
-          <td>{{users[1]['score']}}</td>
-        </tr>
-  
-        <tr>
-          <td>{{users[2]['place']}}</td>
-          <td>{{users[2]['username']}}</td>
-          <td>{{users[2]['score']}}</td>
-        </tr>
-  
-        <tr>
-          <td>{{users[3]['place']}}</td>
-          <td>{{users[3]['username']}}</td>
-          <td>{{users[3]['score']}}</td>
-        </tr>
-  
-        <tr>
-          <td>{{users[4]['place']}}</td>
-          <td>{{users[4]['username']}}</td>
-          <td>{{users[4]['score']}}</td>
-        </tr>
+        {% set c = c + 1 %}
+        {% endfor %}
       </table>
     </div>
 
