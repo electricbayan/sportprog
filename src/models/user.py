@@ -22,3 +22,9 @@ class UserModel(Base, UserMixin, SerializerMixin):
         
     def check_hash_password(self, password):
         return check_password_hash(self.hashed_password, password=password)
+    
+    def set_score(self, score):
+        if not self.score:
+            self.score = score
+        else:
+            self.score += score

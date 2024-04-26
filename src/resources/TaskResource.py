@@ -34,4 +34,9 @@ class TestTask(Resource):
             return jsonify({"message": "Лимит времени истек"})
         if res == "OK":
             return jsonify({"message": "Верный ответ, баллы зачислены на ваш аккаунт"})
-        
+
+
+class GetTaskScore(Resource):
+    def get(self, task_name):
+        task = session.query(TaskModel).filter(TaskModel.name == task_name).first()
+        return task.rating_level

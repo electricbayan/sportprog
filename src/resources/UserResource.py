@@ -1,7 +1,7 @@
 from flask import jsonify, abort, render_template, url_for
 from flask_restful import Resource, reqparse
 from src.models.user import UserModel
-from sqlalchemy import select, inspect
+from sqlalchemy import insert, inspect 
 from src.engine import session
 
 
@@ -13,6 +13,10 @@ parser.add_argument("hashed_password", type=str, location='form')
 login_parser = reqparse.RequestParser()
 login_parser.add_argument("email", type=str, location='form')
 login_parser.add_argument("password", type=str, location="form")
+
+score_parser = reqparse.RequestParser()
+score_parser.add_argument("user_id", type=int, location="form")
+score_parser.add_argument("score", type=int, location="form")
 
 
 def abort_if_user_not_found(email):
@@ -53,3 +57,11 @@ class UserGetEmail(Resource):
         if user:
             return jsonify({"message": "user with this email exists"})
         return jsonify({"message": "user can be created"})
+
+
+class AddScore(Resource):
+    def post(self):
+        args = score_parser.parse_args()
+        user = session.query(UserModel).filter(UserModel.id == args["user_id"]).first()
+        user.set_score(args["score"])
+        session.commit()

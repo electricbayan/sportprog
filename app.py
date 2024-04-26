@@ -95,7 +95,12 @@ def get_task(id_t):
             "file_name": "utils/test_handler.py",
             "task_id": id_t
         }).json()
-        print(res)
+        score = requests.get(f"http://127.0.0.1:5000/api/task/score/{task_name}").json()
+        if res["message"] == "Верный ответ, баллы зачислены на ваш аккаунт":
+            requests.post(f"http://127.0.0.1:5000/api/user/score", data={
+                "user_id": current_user.id,
+                "score": score
+            })
         return render_template("task.html",
                        session=session,
                        user_model=UserModel,
@@ -134,6 +139,8 @@ def main():
     api.add_resource(TaskResource.CheckTaskById, "/api/task/<int:id_task>")
     api.add_resource(TaskResource.GetTaskNameById, "/api/task/name/<int:id_task>")
     api.add_resource(TaskResource.TestTask, "/api/task/test")
+    api.add_resource(TaskResource.GetTaskScore, "/api/task/score/<task_name>")
+    api.add_resource(UserResource.AddScore, "/api/user/score")
     app.run()
     
 if __name__ == "__main__":
