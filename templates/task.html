@@ -62,6 +62,7 @@
 
   <h3>Ограничение по времени</h3>
   
+  
     <h6 style="margin-bottom: 60px;">{{this_task.time}}</h6>
 <form action="" method="post" enctype="multipart/form-data">
   {{form.hidden_tag()}}
@@ -76,8 +77,6 @@
     </div>
     </div>
 </div>
-    
-      
               {{form.answer_file}}<br>
               {% for error in form.answer_file.errors %}
           <div class="alert alert-danger" role="alert">
@@ -89,8 +88,8 @@
         </div>
         <div class="text-center" style="color: red; margin-top: 20px">{{ message }}</div>
 </form>
-  <div style="display: flex; align-items: center;" class="input-box-wrapper">
-    <div>
+  <div style="display: flex; align-items: center; justify-content: space-between;" class="input-box-wrapper">
+    <div style="border: solid; border-width: 1px; border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 5px;">
       <p>
         <a href="/prev_task/{{id_t}}">Предыдущая задача</a>
       </p>
