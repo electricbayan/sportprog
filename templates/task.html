@@ -39,6 +39,7 @@
     <h1 style="margin-top: 40px;">{{this_task.id}}. {{this_task.name}}<br></h1>
     <h3>Описание</h3>
     {{this_task.desc}}
+    <h5>!!!В файле напишите функию solution</h5>
     <h3>Ввод</h3>
     {{this_task.input}}
     <h3>Вывод</h3>
@@ -66,17 +67,6 @@
     <h6 style="margin-bottom: 60px;">{{this_task.time}}</h6>
 <form action="" method="post" enctype="multipart/form-data">
   {{form.hidden_tag()}}
-  <div class="code-redact">
-
-  <div class="info">
-    <input id="info__body_1" class="info__switch" type="checkbox">
-    <label for="info__body_1" class="info__headline">Редактор кода</label>
-    <div class="info__body">
-      {{ form.answer_txt.label(id='middle')  }}
-      {{ form.answer_txt(cols="120", rows="50", id='larger') }}
-    </div>
-    </div>
-</div>
               {{form.answer_file}}<br>
               {% for error in form.answer_file.errors %}
           <div class="alert alert-danger" role="alert">

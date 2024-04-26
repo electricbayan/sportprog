@@ -85,40 +85,39 @@ def login():
 @app.route("/task/<int:id_t>", methods=["GET", "POST"])
 def get_task(id_t):
     form = TaskForm()
-    # try:
-    if form.validate_on_submit():
-        task_name = requests.get(f"http://127.0.0.1:5000/api/task/name/{id_t}").json()
-        a = form.answer_file.data
-        way = "/".join(["utils",  "test_handler.py"])
-        a.save(way)
-        res = requests.post(f"http://127.0.0.1:5000/api/task/test", data={
-            "file_name": "utils/test_handler.py",
-            "task_id": id_t
-        }).json()
-        score = requests.get(f"http://127.0.0.1:5000/api/task/score/{task_name}").json()
-        if res["message"] == "Верный ответ, баллы зачислены на ваш аккаунт":
-            requests.post(f"http://127.0.0.1:5000/api/user/score", data={
-                "user_id": current_user.id,
-                "score": score
-            })
+    try:
+        if form.validate_on_submit():
+            task_name = requests.get(f"http://127.0.0.1:5000/api/task/name/{id_t}").json()
+            a = form.answer_file.data
+            way = "/".join(["utils",  "test_handler.py"])
+            a.save(way)
+            res = requests.post(f"http://127.0.0.1:5000/api/task/test", data={
+                "file_name": "utils/test_handler.py",
+                "task_id": id_t
+            }).json()
+            score = requests.get(f"http://127.0.0.1:5000/api/task/score/{task_name}").json()
+            if res["message"] == "Верный ответ, баллы зачислены на ваш аккаунт":
+                requests.post(f"http://127.0.0.1:5000/api/user/score", data={
+                    "user_id": current_user.id,
+                    "score": score
+                })
+            return render_template("task.html",
+                           session=session,
+                           user_model=UserModel,
+                           c_user=current_user,
+                           id_t=id_t,
+                           task_model = TaskModel,
+                           form=form,
+                           message=res["message"])
         return render_template("task.html",
                        session=session,
                        user_model=UserModel,
                        c_user=current_user,
                        id_t=id_t,
                        task_model = TaskModel,
-                       form=form,
-                       message=res["message"])
-    return render_template("task.html",
-                   session=session,
-                   user_model=UserModel,
-                   c_user=current_user,
-                   id_t=id_t,
-                   task_model = TaskModel,
-                   form=form)
-    # except Exception:
-    #     return render_template("login_to_tasks.html")
-
+                       form=form)
+    except Exception:
+        return render_template("login_to_tasks.html")
 
 @app.route("/next_task/<int:id_t>", methods=["GET", "POST"])
 def next_task(id_t):
