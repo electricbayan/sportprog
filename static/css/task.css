@@ -34,6 +34,7 @@ body{
   background: rgba(139,33,158,1);
   cursor: pointer;
   border-radius: 6px;
+ 
 }
 .input-box:hover{
   background: rgba(2,0,36,1);
@@ -41,7 +42,6 @@ body{
 
 .input-box-wrapper {
   position: relative;
-  max-width: 430px;
   width: 100%;
 }
 .info {
@@ -116,3 +116,17 @@ body{
   justify-content: flex-start;
 }
 
+
+.input-box{
+  color: #fff;
+  letter-spacing: 1px;
+  border: none;
+  background: rgba(139,33,158,1);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input-box.button input:hover{
+  background: rgba(2,0,36,1);
+}
