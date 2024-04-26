@@ -61,44 +61,47 @@
     
 
   <h3>Ограничение по времени</h3>
+  
     <h6 style="margin-bottom: 60px;">{{this_task.time}}</h6>
-
+<form action="" method="post" enctype="multipart/form-data">
+  {{form.hidden_tag()}}
   <div class="code-redact">
 
   <div class="info">
     <input id="info__body_1" class="info__switch" type="checkbox">
     <label for="info__body_1" class="info__headline">Редактор кода</label>
     <div class="info__body">
-      <textarea style="min-height: 450px; min-width: 600px;" id="solutioncontent"># Вставьте ваш код</textarea>
+      {{ form.answer_txt.label(id='middle')  }}
+      {{ form.answer_txt(cols="120", rows="50", id='larger') }}
     </div>
-
-    <div>
-      <p></p>
     </div>
-  </div>
-
-  </div>
-  <div class="input-box button">
-    <a href="/api/submit_task/id_t" style="color: white; text-decoration: none;">Отправить решение</a>
-  </div>
-
-  <div style="display: flex; align-items: center; justify-content:space-between;" class="input-box-wrapper">
+</div>
+              {{form.answer_file}}<br>
+              {% for error in form.answer_file.errors %}
+          <div class="alert alert-danger" role="alert">
+              {{ error }}
+          </div>
+          {% endfor %}
+        <div class="input-box button">
+          {{ form.submit(type="submit") }}
+        </div>
+        <div class="text-center" style="color: red; margin-top: 20px">{{ message }}</div>
+</form>
+  <div style="display: flex; align-items: center; justify-content: space-between;" class="input-box-wrapper">
     <div style="border: solid; border-width: 1px; border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 5px;">
       <p>
-        <a href="/next_task">Следующая задача</a>
+        <a href="/prev_task/{{id_t}}">Предыдущая задача</a>
       </p>
     </div>
     <div style="border: solid; border-width: 1px; border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 5px;">
       <p>
-        <a href="/prev_task">Предыдущая задача</a>
+        <a href="/next_task/{{id_t}}">Следующая задача</a>
       </p>
     </div>
 
   </div>
 
   </div>
-
-  <script src="../scripts/send_solution.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
