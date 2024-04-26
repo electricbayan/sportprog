@@ -1,1 +1,1 @@
-This is backend for our project
+Website for solving sport programming problems
