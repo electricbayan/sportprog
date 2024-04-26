@@ -29,7 +29,7 @@ class LoginUser(Resource):
         args = login_parser.parse_args()
         user = session.query(UserModel).filter(UserModel.email == args["email"]).first()
         if user and user.check_hash_password(args["password"]):
-            return jsonify(obj_to_dict(user))
+            return jsonify(obj_to_dict(user)) # {"id": 1, "nickname": Mikhael, email passord}
         return jsonify({"message": "bad request"})
             
             

@@ -130,3 +130,10 @@ body{
 .input-box.button input:hover{
   background: rgba(2,0,36,1);
 }
+
+#larger {
+  font-size: 15px;
+  }
+#middle {
+  font-size: 25px;
+  }
