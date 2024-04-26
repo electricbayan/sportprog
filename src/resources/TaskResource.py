@@ -29,7 +29,7 @@ class TestTask(Resource):
         args = parser.parse_args()
         res = test_task(filename=args["file_name"], task_num=args["task_id"])
         if res == "WA":
-            return jsonify({"messsage": "Неверный ответ"})
+            return jsonify({"message": "Неверный ответ"})
         if res == "TL":
             return jsonify({"message": "Лимит времени истек"})
         if res == "OK":

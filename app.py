@@ -85,19 +85,18 @@ def login():
 @app.route("/task/<int:id_t>", methods=["GET", "POST"])
 def get_task(id_t):
     form = TaskForm()
+    # try:
     if form.validate_on_submit():
         task_name = requests.get(f"http://127.0.0.1:5000/api/task/name/{id_t}").json()
         a = form.answer_file.data
-        way = "/".join(["utils",  f"{task_name}.py"])
+        way = "/".join(["utils",  "test_handler.py"])
         a.save(way)
         res = requests.post(f"http://127.0.0.1:5000/api/task/test", data={
-            "file_name": f"utils/{task_name}.py",
+            "file_name": "utils/test_handler.py",
             "task_id": id_t
         }).json()
-        if res["message"] == "Верный ответ, баллы зачислены на ваш аккаунт":
-            print("OK")
-        else:
-            return render_template("task.html",
+        print(res)
+        return render_template("task.html",
                        session=session,
                        user_model=UserModel,
                        c_user=current_user,
@@ -112,50 +111,21 @@ def get_task(id_t):
                    id_t=id_t,
                    task_model = TaskModel,
                    form=form)
-    return render_template("login_to_tasks.html")
+    # except Exception:
+    #     return render_template("login_to_tasks.html")
 
 
 @app.route("/next_task/<int:id_t>", methods=["GET", "POST"])
 def next_task(id_t):
     if requests.get(f"http://127.0.0.1:5000/api/task/{id_t + 1}").json()["status"] == "ok":
         id_t += 1
-        return render_template("task.html",
-                               form=TaskForm(),
-                           session=session,
-                           user_model=UserModel,
-                           c_user=current_user,
-                           id_t=id_t,
-                           task_model = TaskModel)
-        
-    return render_template("task.html",
-                           form=TaskForm(),
-                           session=session,
-                           user_model=UserModel,
-                           c_user=current_user,
-                           id_t=id_t,
-                           task_model = TaskModel)
-
+    return redirect(f"http://127.0.0.1:5000/task/{id_t}")
 
 @app.route("/prev_task/<int:id_t>", methods=["GET", "POST"])
 def prev_task(id_t):
     if requests.get(f"http://127.0.0.1:5000/api/task/{id_t - 1}").json()["status"] == "ok":
         id_t -= 1
-        return render_template("task.html",
-                               form=TaskForm(),
-                           session=session,
-                           user_model=UserModel,
-                           c_user=current_user,
-                           id_t=id_t,
-                           task_model = TaskModel)
-        
-    return render_template("task.html",
-                           form=TaskForm(),
-                           session=session,
-                           user_model=UserModel,
-                           c_user=current_user,
-                           id_t=id_t,
-                           task_model = TaskModel)
-
+    return redirect(f"http://127.0.0.1:5000/task/{id_t}")
 
 def main():
     api.add_resource(UserResource.CreateUser, "/api/reg")

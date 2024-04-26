@@ -5,7 +5,7 @@ from wtforms.widgets import TextArea
 
 
 class TaskForm(FlaskForm):
-    answer_txt = TextAreaField("#Напишите функцию solution с решением задачи", widget=TextArea())
+    answer_txt = TextAreaField("Напишите функцию solution с решением задачи", widget=TextArea())
     answer_file = FileField("Прикрепите свое решение", validators=[FileRequired()])
     submit = SubmitField('Отправить решение')
 
